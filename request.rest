@@ -1,0 +1,115 @@
+GET http://localhost:7778/api/users
+
+###
+POST http://localhost:7777/users/api/users/
+Content-Type: application/json
+
+{
+    "title": "Mr",
+    "userName": "Nezzy",
+    "firstName": "Oga",
+    "lastName": "Nez",
+    "address": "7447 Address st",
+    "countryCode": 234,
+    "phoneNumber": 8092159659,
+    "email": "oganezzy2@example.com",
+    "bank_name": "Best Bank Bank Name",
+    "bank_account_number": 55552885566277,
+    "bvn": 73838399393900,
+    "system_account_number": 4000733000020776,
+    "accountBalance": 60000000000.56,
+    "password": 424242,
+    "confirmedPassword": 424242,
+}
+
+###
+PATCH http://localhost:7777/api/users/user/edit/8035412222
+Content-Type: application/json
+
+{
+    "accountBalance": 412000000.56
+}
+
+###
+PUT http://localhost:7777/api/users/user/san/2348012693243
+Content-Type: application/json
+
+{
+    "title": "Mr.",
+    "userName": "joenez",
+    "firstName": "joe",
+    "lastName": "nez",
+    "address": "111 cow street",
+    "countryCode": 234,
+    "phoneNumber": 8012693243,
+    "email": "joenez@example.com",
+    "bank_name": "bank one",
+    "bank_account_number": 234804443243,
+    "bvn": 4442693243,
+    "system_account_number": 2348012693243,
+    "accountBalance": 55798567.78,
+    "password": 111111
+}
+
+###
+
+DELETE http://localhost:7778/api/users/user/del/11112222444
+Content-Type: application/json
+
+
+###
+GET http://localhost:7778/api/users/user/8035412222
+Content-Type: application/json
+
+###
+POST http://localhost:7778/transactions/api/transactions
+
+
+
+###
+GET http://localhost:7778/api/users/transactions/8035412222
+
+
+
+        '<div class="row line">' +
+        '<div class="col-md-2 content-group"><br>' +
+        '<label class="lables" for="transfer date">*Transfer Date</label><br>' +
+        
+        
+        
+        "</div>" +
+        '<div class="col-md-3 content-group">' +
+        "<br>" +
+        '<label class="lables" for="recipient info">*Recipient</label><br>' +
+        
+        
+        
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-3 content-group">' +
+        "<br>" +
+        '<label class="lables" for="Initial Account Balance">*Initial Account Balance</label><br>' +
+        
+        
+        
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-2 content-group">' +
+        "<br>" +
+        '<label class="lables" for=" Account Balance">*Account Balance</label><br>' +
+        
+        
+          
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-2 content-group">' +
+        "<br>" +
+        '<label class="lables" for="Sender Account Number">*Transfer Amount</label><br>' +
+        
+        
+        
+        "<br>" +
+        "</div>" +
+        "</div>" +
+        "</div>"
+        

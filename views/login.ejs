@@ -1,0 +1,39 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <div class="login-form">
+    <%- include("./partials/messages") %>
+    <form action="/users/login" method="POST">
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+            <label for="phoneNumber">*Phone Number</label>
+            <input type="text" id="phonenumber" name="phoneNumber" class="form-control" placeholder="*Phone Number" required="required" value="<%= typeof phoneNumber !== 'undefined' ? phoneNumber : '' %>" />
+        </div>
+        <!-- <div class="form-group">
+            <input type="text" id="uname" name="username" class="form-control" placeholder="Phone Number" required="required" />
+
+             <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="*Phone Number" required="required" value="<%#= typeof phoneNumber !== 'undefined' ? phoneNumber : '' %>" /> 
+        </div> -->
+        <div class="form-group">
+            <label for="password">*Password</label>
+            <input type="password" id="pword" name="password" class="form-control" placeholder="*Password" required="required" pattern=".{6,}" title="6 characters minimum" value="<%= typeof password !== 'undefined' ? password : '' %>" />
+        </div>
+        <!-- <div class="form-group">
+            <input type="password" id="pword" name="password" class="form-control" placeholder="Password" required="required" />
+        </div> -->
+        <div class="form-group">
+            <button Id="signIn" type="submit" class="btn btn-success btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="/users/login" class="pull-right">Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center"><a href="/users/register">Create an Account</a></p>
+</div>
+      <p class="lead mt-4">
+        No Account? <a href="/users/register">Register</a>
+      </p>
+    </div>
+  </div>
+</div>
