@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const uri = "mongodb+srv://esotere:learning2823@cluster0.b6y1i.mongodb.net/coinzUsers?retryWrites=true&w=majority"
+
 
 mongoose.connect("mongodb://localhost/coinzUsers", { useNewUrlParser: true});
 
@@ -11,5 +13,6 @@ db.on("error", error => {
 
 
 module.exports = {
-    url: "mongodb://localhost:27017/coinzUsers"
+    url: "mongodb://localhost:27017/coinzUsers",
+    MongoURI: uri
 };
