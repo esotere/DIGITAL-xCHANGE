@@ -578,8 +578,8 @@ $(function () {
   //********************************************************** */
 
   $("#transactionsSummary").on("click", (e) => {
-    e.preventDefault();
     $("#transactionInfo").empty()
+    e.preventDefault();
     console.log("clicked");
     // $("#transactSummaryInfo").append(
     //     '<div class="row line">' +
@@ -721,7 +721,7 @@ $(function () {
           `Are you sure you want to transfer ${transferAmount} to ${phoneNumber2} transaction may not be easily reversed`
         );
         if (!accept) {
-          alert(`Transaction cancelled`);
+          return alert(`Transaction cancelled`);
         } else {
           let transfer_1 = phone1AcctBal[0] - parseFloat(transferAmount);
           console.log(transfer_1);
@@ -759,6 +759,7 @@ $(function () {
               if (response.accountBalance === NaN || response.accountBalance === null) {
                 console.log("error");
                 alert("invalid recipient Phone Number");
+                return;
               };
               // *****************************************************
 
@@ -953,12 +954,12 @@ $(function () {
     $("#content").append(
       '<div class="row line">' +
         '<div class="col-md-3 content-group"><br>' +
-        '<label class="lables" for="Sender Account Number">*Transfer Date</label><br>' +
+        '<label class="lables" for="Transfer Date">*Transfer Date</label><br>' +
         "<input id=date-" +
         tagIncrease +
         'type="date" name="transfer date" value="yyyy-MM-dd" min="2019-03-26" placeholder="">' +
         "</div>" +
-        '<div class="col-md-3 content-group">' +
+        '<div class="col-md-2 content-group hiddenContent">' +
         "<br>" +
         '<label class="lables" for="Sender Account Number">*Sender Account Number</label><br>' +
         "<input id=phone-1-" +
@@ -966,7 +967,7 @@ $(function () {
         ' type="text" class="inputbox space" placeholder="" name="Sender Account Number">' +
         "<br>" +
         "</div>" +
-        '<div class="col-md-3 content-group">' +
+        '<div class="col-md-4 content-group">' +
         "<br>" +
         '<label class="lables" for="Sender Account Number">*Recipient Account</label><br>' +
         "<input id=phone-2-" +

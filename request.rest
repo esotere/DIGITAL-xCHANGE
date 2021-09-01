@@ -23,11 +23,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:7777/api/users/user/edit/8035412222
+PATCH http://localhost:7779/api/users/user/edit/3028459877
 Content-Type: application/json
 
 {
-    "accountBalance": 412000000.56
+    "accountBalance": 12000000.56
 }
 
 ###
@@ -71,45 +71,4 @@ GET http://localhost:7778/api/users/transactions/8035412222
 
 
 
-        '<div class="row line">' +
-        '<div class="col-md-2 content-group"><br>' +
-        '<label class="lables" for="transfer date">*Transfer Date</label><br>' +
-        
-        
-        
-        "</div>" +
-        '<div class="col-md-3 content-group">' +
-        "<br>" +
-        '<label class="lables" for="recipient info">*Recipient</label><br>' +
-        
-        
-        
-        "<br>" +
-        "</div>" +
-        '<div class="col-md-3 content-group">' +
-        "<br>" +
-        '<label class="lables" for="Initial Account Balance">*Initial Account Balance</label><br>' +
-        
-        
-        
-        "<br>" +
-        "</div>" +
-        '<div class="col-md-2 content-group">' +
-        "<br>" +
-        '<label class="lables" for=" Account Balance">*Account Balance</label><br>' +
-        
-        
-          
-        "<br>" +
-        "</div>" +
-        '<div class="col-md-2 content-group">' +
-        "<br>" +
-        '<label class="lables" for="Sender Account Number">*Transfer Amount</label><br>' +
-        
-        
-        
-        "<br>" +
-        "</div>" +
-        "</div>" +
-        "</div>"
         

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const uri = "mongodb+srv://esotere:learning2823@cluster0.b6y1i.mongodb.net/coinzUsers?retryWrites=true&w=majority"
+const uri = process.env.MongoURI
 
 
-mongoose.connect("mongodb://localhost/coinzUsers", { useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/coinzUsers" || uri, { useNewUrlParser: true});
 
 const db = mongoose.connection;
 

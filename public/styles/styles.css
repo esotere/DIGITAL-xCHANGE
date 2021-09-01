@@ -99,6 +99,9 @@ input.inputBox {
 #phoneOne {
     display: none;
 }
+.hiddenContent {
+    display: none;
+}
 
 #initialRow {
     display: block;

@@ -32,7 +32,7 @@ const port = process.env.PORT || 7779;
 // const db = require("./config/connection.jsx");
 
 // Mongoose connection for Database 
-mongoose.connect("mongodb://localhost/coinzUsers", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost/coinzUsers" || process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected..."))
     .catch(err => console.log(err));
 
