@@ -47,7 +47,7 @@ app.use(expressLayouts);     // +==> must be above app.set or won't work
 app.set("view engine", "ejs");
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'front_end', 'build')));
+  app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'DIGITAL_XCHANGE', 'build', 'server.jsx'))
