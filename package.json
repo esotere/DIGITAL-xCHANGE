@@ -1,9 +1,13 @@
 {
   "name": "xchange",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.x"
+  },
   "main": "server.jsx",
   "scripts": {
     "start": "node server.jsx",
+    "heroku-postbuild": "npm run build",
     "dev": "node server.jsx"
   },
   "keywords": [],
@@ -28,5 +32,7 @@
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
+  
   "description": ""
 }
+  
