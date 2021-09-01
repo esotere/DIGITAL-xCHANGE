@@ -46,14 +46,14 @@ mongoose.connect("mongodb://localhost/coinzUsers", { useNewUrlParser: true, useU
 app.use(expressLayouts);     // +==> must be above app.set or won't work
 app.set("view engine", "ejs");
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'views', 'build')));
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'views', 'build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'DIGITAL_XCHANGE', 'build', 'server.jsx'))
-  });
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'DIGITAL_XCHANGE', 'build', 'server.jsx'))
+//   });
   
-}
+// }
 
 app.use(express.static(path.resolve(__dirname + "/public/"))); 
 // app.use(express.static(path.join(__dirname, "/public/")));
