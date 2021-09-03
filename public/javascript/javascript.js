@@ -524,7 +524,9 @@ $(function () {
 
   $("#balanceBtn").on("click", (e) => {
     e.preventDefault();
+    $("#balanceBtn").css({"color": "green"});
     populate();
+    // toggle(this);
   });
 
   // $("#date").on("change", (e) => {
@@ -536,14 +538,18 @@ $(function () {
   //   e.preventDefault();
   //   populate();
   // });
-
+  let btnValue = [];
   let toggle = (button) => {
-  if( $("#balanceBtn").val() == "OFF"){
-    $("#balanceBtn").val() =" ON";}
+    if ($("#balanceBtn").val() === btnValue[0]) {
+    
+      $("#balanceBtn").val() = "";
 
-  else if( $("#balanceBtn").val() == "ON"){
-    $("#balanceBtn").val() = "OFF";}
-}
+    } else if ($("#balanceBtn").val() === "") {
+      
+      $("#balanceBtn").val() = btnValue[0];
+    }
+  }
+  // toggle();
 
     // *********************************************************
   // Clicking transfer button to initiate transfer
@@ -581,6 +587,11 @@ $(function () {
     $("#transactionInfo").empty()
     e.preventDefault();
     console.log("clicked");
+
+    $('div.row.content.info').css('display', 'flex')
+    // $('div#transaction_summary').css('display', 'flex')
+
+    
     // $("#transactSummaryInfo").append(
     //     '<div class="row line">' +
     //     '<div class="col-md-2 content-group"><br>' +
@@ -641,7 +652,18 @@ $(function () {
   // ***********************************************
   // Clicking cancel button to reset form
   //************************************************ */
-  $("#cancel").on("click", () => {});
+  let reload = () => {
+    $("#date").val("");
+    $("#phone-2").val("");
+    $("#amt").val("");
+    reload = location.reload();
+  };
+
+
+
+  $("#cancel").on("click", () => {
+    reload()
+  });
   // ********************************************************
   // function to transfer funds from one account to another
   //********************************************************* */
@@ -659,6 +681,12 @@ $(function () {
       phone2AcctBal = [],
       newUser1Bal = [],
       newUser2Bal = [];
+    
+    if (!phoneNumber2 || phoneNumber2 === "") {
+      alert("Please enter recipient phone number");
+      $("#phone-2").focus();
+      return;
+    } else {
     
     
     
@@ -752,11 +780,11 @@ $(function () {
               error: () => alert("Invalid Recipient")
             }).then((response) => {
               console.log(response);
-              phone2AcctBal.push(response.accountBalance);
+              phone2AcctBal.push(parseFloat(response.accountBalance));
               console.log(phone2AcctBal);
 
               // verify this *************
-              if (response.accountBalance === NaN || response.accountBalance === null) {
+              if (response.phoneNumber === NaN || response.phoneNumber === null) {  // changed from response.accountBalance to response.phoneNumber
                 console.log("error");
                 alert("invalid recipient Phone Number");
                 return;
@@ -765,6 +793,7 @@ $(function () {
 
               // Transfer calculation 2
               // Phone-2
+              console.log({phone2AcctBal: phone2AcctBal[0]})
               let transfer_2 = phone2AcctBal[0] + parseFloat(transferAmount);
               console.log(transfer_2);
               newUser2Bal.push(transfer_2);
@@ -809,16 +838,20 @@ $(function () {
 
                   //  $("#transactionSummary")
                   // .append("<br>" + `Transfer to ${response.firstName} ${response.lastName} ${response.phoneNumber}`);
-
+                  
                 })
-
               })
             });
-
+            
           });
         }
       }
     });
+    }
+    //  $('div#transactInfoHead').css('display', 'flex')
+    //  $('div#summaryInfo').css('display', 'flex')
+    $('div.row.content.info2').css('display', 'flex')
+    
   };
   //*********************************************************
   // function to update balance
@@ -853,7 +886,9 @@ $(function () {
       method: "GET",
     }).then((response) => {
       console.log(response);
-      $("#balance").text(response.accountBalance);
+      let viewableAccountBalance = response.accountBalance
+      $("#balance").text(new Intl.NumberFormat().format(viewableAccountBalance));
+      btnValue.push(viewableAccountBalance)
     });
   };
 
@@ -874,8 +909,11 @@ $(function () {
       let see = [];
       response.slice().reverse().forEach(element => { // looping in reverse
       // response.forEach(element => {                // looping normally
-        console.log(element.transactionInfo)
-        see.push(element)
+        console.log(element.transactionInfo);
+        see.push(element);
+        
+        let initialBalance = (parseFloat(element.accountBalance) + parseFloat(element.transactionAmount))
+
         // $("#transactInfo").append("<br>" + element.transactionInfo + "<br>");
         $("#summaryInfo").append(
         // $("#summaryInfo").prepend(
@@ -898,7 +936,7 @@ $(function () {
         "<br>" +
         '<label class="lables" for="Initial Account Balance">*Initial Account Balance</label><br>' +
         
-        `${(parseFloat(element.accountBalance) + parseFloat(element.transactionAmount))}` +
+        `${new Intl.NumberFormat().format(initialBalance)}` +
         
         "<br>" +
         "</div>" +
@@ -906,7 +944,7 @@ $(function () {
         "<br>" +
         '<label class="lables" for=" Account Balance">*Account Balance</label><br>' +
         
-          `${element.accountBalance}` +
+          `${new Intl.NumberFormat().format(element.accountBalance)}` +
           
         "<br>" +
         "</div>" +
@@ -914,7 +952,7 @@ $(function () {
         "<br>" +
         '<label class="lables" for="Sender Account Number">*Transfer Amount</label><br>' +
         
-        element.transactionAmount +
+        new Intl.NumberFormat().format(element.transactionAmount) +
         
         "<br>" +
         "</div>" +

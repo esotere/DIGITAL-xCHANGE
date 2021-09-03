@@ -3,6 +3,35 @@
     color: white !important;
     text-align: center;
 }
+
+.button, .btn {
+  padding: 3px 5px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  /* background-color: #04AA6D; */
+  border: none;
+  border-radius: 5px;
+  /* box-shadow: 0 1px #999; */
+}
+
+.transfer:hover {background-color: #3e8e41}
+
+.cancel:hover {background-color: #960b0b}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+.logout {
+    margin: 15px
+}
+
+
+
 .bal {
     text-align: center;
 }
@@ -77,6 +106,14 @@
     font-size: medium;
     text-align: center;
 }
+.info2 {
+    display:flex;
+    margin: auto;
+    line-height: 16px;
+    /* font-weight: 900; */
+    font-size: medium;
+    text-align: center;
+}
 input.inputBox {
     text-align: right;
 }
@@ -102,7 +139,37 @@ input.inputBox {
 .hiddenContent {
     display: none;
 }
+#worth {
+    display: none;
+}
 
 #initialRow {
     display: block;
 }
+img {
+  width:100px;
+  height:100px;
+  background: url(http://goo.gl/vyAs27) no-repeat scroll 0 0;
+}
+
+div.row.content.info {
+    display: none
+}
+div.row.content.info2 {
+    display: none
+}
+/* div#summaryInfo {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px, 12% !important;
+}
+div#transaction_summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px, 12% !important;
+}
+div#transactInfoHead {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px, 12% !important;
+} */

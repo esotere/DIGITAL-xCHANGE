@@ -1,6 +1,6 @@
 <div class="container flex-container">
     <!-- <h1 class="mt-4">Dashboard</h1> -->
-    <p class="lead mb-3"><h1 class="mt-4">Welcome <%= user.firstName %></h1></p><br><br>
+    <p class="lead mb-3"><h1 class="mt-4">Welcome <%= user.firstName %>!</h1></p><br><br>
 </div>
 <!-- <div class="container flex-container">
 <p class="lead mb-3"><h3 class="mt-4">Initial Account Balance <%#= user.accountBalance %></h3></p>
@@ -13,11 +13,12 @@
     </div>
     <div class="btn" >
         <a id="transactionsSummary" class="btn btn-secondary">Transactions Summary</a>
-        <a id="transactionsFull" onclick="window.location.href='/transactions'" class="btn btn-primary">Transactions</a>
+        <a id="transactionsFull" onclick="window.location.href='/transactions'" class="btn btn-warning">Transactions</a>
+        <a href="" class="btn btn-primary">Add Funds</a>
     </div>
 </div>
 
-<div class="container">
+<div class="container logout">
     <div class="form-group">
         <!-- <a href="/users/logout" class="btn btn-secondary">Logout</a> -->
         <button Id="logout" type="submit" class="btn btn-secondary btn-block"
@@ -61,8 +62,8 @@
         <a href="" class="glyphicon glyphicon-plus" aria-hidden="true"> Add Recipient</a>
     </div>
     <div class=" submit submit-btn-wrapper">
-        <button id="transfer" class="button btn btn-sm btn-success">TRANSFER</button>
-        <button id="cancel" class="button btn btn-sm btn-danger">CANCEL</button>
+        <button id="transfer" class="button btn btn-sm btn-success transfer">TRANSFER</button>
+        <button id="cancel" class="button btn btn-sm btn-danger cancel" type="reset" value="reset">CANCEL</button>
     </div>
 
 
@@ -76,14 +77,14 @@
         <div id="transactDate" class="col-md-2"><b>Transaction Date</b></div>
         <div id="transactInfo" class="col-md-3"><b>Transaction Info</b></div>
         <div id="initialAcctBal" class="col-md-3"><b>Initial Balance</b></div>
-        <div id="newAcctBal" class="col-md-2"><b>Current Balance</b></div>
+        <div id="newAcctBal" class="col-md-2"><b>Post Transaction Balance</b></div>
         <div id="transactAmt" class="col-md-2"><b>Transaction Amount</b></div>
         
     </div>
     
 </div>
 <div class="container ">
-    <div id="transaction_summary" class="row content info">
+    <div id="transaction_summary" class="row content info2">
         <div id="transactionDate" class="col-md-3"><b>Transaction Date</b></div>
         <div id="transactionInfo" class="col-md-6"><b>Transaction Info</b></div>
         <div id="transactionAmt" class="col-md-3"><b>Transaction Amount</b></div>

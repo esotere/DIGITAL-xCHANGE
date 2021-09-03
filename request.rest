@@ -1,4 +1,4 @@
-GET http://localhost:7778/api/users
+GET http://localhost:7779/api/users
 
 ###
 POST http://localhost:7777/users/api/users/
@@ -23,11 +23,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:7779/api/users/user/edit/3028459877
+PATCH http://localhost:7779/api/users/user/edit/4444446666
 Content-Type: application/json
 
 {
-    "accountBalance": 12000000.56
+    "accountBalance": 120000.56
 }
 
 ###
@@ -62,13 +62,13 @@ GET http://localhost:7778/api/users/user/8035412222
 Content-Type: application/json
 
 ###
-POST http://localhost:7778/transactions/api/transactions
-
+GET http://localhost:7779/api/users/transactions
+Content-Type: application/json
 
 
 ###
-GET http://localhost:7778/api/users/transactions/8035412222
-
+GET http://localhost:7779/api/users/transactions/8035412222
+Content-Type: application/json
 
 
         

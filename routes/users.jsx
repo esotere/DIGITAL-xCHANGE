@@ -74,7 +74,10 @@ router.post("/api/users", (req, res) => {
 
     console.log(req.body);
 
-
+    let signUpBalance = 0.00;
+    console.log(signUpBalance)
+    req.body.accountBalance = JSON.stringify(signUpBalance);
+    console.log({ab:req.body.accountBalance, balance: signUpBalance})
     let errors = [];
 
     // Check required fields
@@ -166,6 +169,8 @@ router.post("/api/users", (req, res) => {
                         // Save user
                         newUser.save()
                             .then(user => {
+                                console.log(user)
+                                console.log(newUser)
                                 req.flash("success_msg", "You are now registered and can log in.");
                                 res.redirect("/users/login");
                             })
