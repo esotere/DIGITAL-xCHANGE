@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
@@ -23,7 +24,6 @@ var countryTelData = require('country-telephone-data');
 countryTelData.allCountries // has data as array of objects 
 countryTelData.iso2Lookup // has data as a map (object) indexed by iso2 name of the country
 
-require("dotenv").config();
 
 // Port server is running on and process.env for when deployed
 const port = process.env.PORT || 7779;
@@ -36,7 +36,11 @@ mongoose.connect("mongodb://localhost/coinzUsers" || process.env.MONGODB_URI, { 
     .then(() => console.log("MongoDB connected..."))
     .catch(err => console.log(err));
 
+    
 
+// mongoose.connect("mongodb://localhost/coinzUsers", { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log("MongoDB connected..."))
+//     .catch(err => console.log(err));
 
 
 
@@ -91,8 +95,8 @@ app.use((req, res, next) => {
 // Routes 
 app.use("/", routesIndex);
 app.use("/users", routesUsers);
+// app.use("/transactions", routesUsers);
 routeController(app);
-
 
 
 

@@ -173,3 +173,14 @@ div#transactInfoHead {
     justify-content: space-around;
     margin: 0px, 12% !important;
 } */
+#balance {
+    display: none;
+}
+
+.elegant {
+    color: #3e8e41
+}
+
+.elegant2 {
+    color: red
+}

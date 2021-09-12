@@ -7,6 +7,20 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 let Schema = mongoose.Schema;
 
+let PhoneNumberSchema = Schema({
+    telephone_1: {
+        type: Number,
+        unique: false,
+        require: true,
+
+    },
+    telephone_2: {
+        type: Number,
+        unique: false,
+        require: true,
+    }
+})
+
 let TransactionSchema = new Schema({
 transactionDate: {
     type: String,
@@ -19,6 +33,12 @@ senderPhoneNumber: {
     require: true,
 },
 transactionInfo: {
+    type: String,
+    trim: true,
+    unique: false,
+    require: true,
+},
+transactionInfoOther: {
     type: String,
     trim: true,
     unique: false,
@@ -48,6 +68,11 @@ recipientPhoneNumber: {
     require: true,
 },
 accountBalance: {
+    type: {decimal:mongoose.Types.Decimal128},
+    trim: true,
+    unique: false,
+},
+recipientAccountBalance: {
     type: {decimal:mongoose.Types.Decimal128},
     trim: true,
     unique: false,

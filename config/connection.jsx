@@ -4,11 +4,14 @@ const uri = process.env.MONGODB_URI
 
 mongoose.connect(uri || "mongodb://localhost/coinzUsers" , { useNewUrlParser: true});
 
+// mongoose.connect("mongodb://localhost/coinzUsers" , { useNewUrlParser: true});
+
 const db = mongoose.connection;
 
 db.on("error", error => {
     console.log("Database Error: ", error);
 });
+
 
 
 

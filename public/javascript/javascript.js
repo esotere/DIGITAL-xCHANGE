@@ -526,8 +526,21 @@ $(function () {
     e.preventDefault();
     $("#balanceBtn").css({"color": "green"});
     populate();
-    // toggle(this);
+    toggle();
+    
   });
+  
+  // let btnValue = [];
+  let toggle = () => {
+    if ($("#balance").is(":hidden")) {
+    
+      $("#balance").show();
+
+    } else if ($("#balance").is(":visible")) {
+      
+      $("#balance").hide();
+    }
+  }
 
   // $("#date").on("change", (e) => {
   //   e.preventDefault();
@@ -538,18 +551,8 @@ $(function () {
   //   e.preventDefault();
   //   populate();
   // });
-  let btnValue = [];
-  let toggle = (button) => {
-    if ($("#balanceBtn").val() === btnValue[0]) {
-    
-      $("#balanceBtn").val() = "";
 
-    } else if ($("#balanceBtn").val() === "") {
-      
-      $("#balanceBtn").val() = btnValue[0];
-    }
-  }
-  // toggle();
+
 
     // *********************************************************
   // Clicking transfer button to initiate transfer
@@ -584,7 +587,9 @@ $(function () {
   //********************************************************** */
 
   $("#transactionsSummary").on("click", (e) => {
-    $("#transactionInfo").empty()
+    
+    $("#transactionInfo").empty();
+    // $("#summaryInfo").empty();
     e.preventDefault();
     console.log("clicked");
 
@@ -635,6 +640,7 @@ $(function () {
     //     "</div>" +
     //     "</div>"
     //   )
+    
     getTransactionSummary();
     
   });
@@ -720,6 +726,8 @@ $(function () {
       phone1AcctBal.push(response.accountBalance);
       console.log(phone1AcctBal);
       $("#balance").text(phone1AcctBal[0]);
+      
+      let senderInfo = `${response.firstName} ${response.lastName} ${response.phoneNumber}`;
       // Transfer calculation
       // Phone-1
       if (transferDate === "") {
@@ -806,6 +814,7 @@ $(function () {
                 contentType: "application/json",
                 data: JSON.stringify(change),
               }).then((res) => {
+                console.log(res);
                 console.log(response);
                 $("#transactionInfo")
                   .append("<br>" + `Transfer to ${response.firstName} ${response.lastName} ${response.phoneNumber}`);
@@ -813,17 +822,23 @@ $(function () {
                 
                 // Call to store transaction
                 let transactionInfo = `Transfer to ${response.firstName} ${response.lastName} ${response.phoneNumber} ${transferAmount} on ${transferDate}.`;
+                let transactionInfoOther = `Transfer from ${senderInfo} to ${response.firstName} ${response.lastName} ${response.phoneNumber} ${transferAmount} on ${transferDate}.`
                 let transactionData = {
                   transactionDate: transferDate,
                   senderPhoneNumber: phoneNumber1,
                   transactionInfo: transactionInfo,
+                  transactionInfoOther: transactionInfoOther,
                   recipientFirstName: response.firstName,
                   recipientLastName: response.lastName,
                   transactionAmount: transferAmount,
                   recipientPhoneNumber: phoneNumber2,
                   accountBalance: newUser1Bal[0],
+                  recipientAccountBalance: newUser2Bal[0]
+
                 };
-                console.log(transactionData)
+                console.log(transactionData);
+                // console.log({ acctbal: transactionData.accountBalance, recAcctBal: transactionData.recipientAccountBalance })
+                
                 $.ajax({
                   url: queryUrl3,
                   method: "POST",
@@ -887,14 +902,17 @@ $(function () {
     }).then((response) => {
       console.log(response);
       let viewableAccountBalance = response.accountBalance
-      $("#balance").text(new Intl.NumberFormat().format(viewableAccountBalance));
-      btnValue.push(viewableAccountBalance)
+      $("#balance").text(new Intl.NumberFormat().format(parseFloat(viewableAccountBalance).toFixed(2)));
+      // btnValue.push(viewableAccountBalance)
+      
     });
   };
 
   let getTransactionSummary = () => {
     let queryUrl = "/api/users/transactions/" + $("#phone-1").val().trim();
-    // Call to get transaction info
+    let queryUrl2 = "/api/users/incoming_transactions/" + $("#phone-1").val().trim();
+    let see = [];
+    // Call to get transaction info (outgoing)
     $.ajax({
       url: queryUrl,
       method: "GET"
@@ -904,9 +922,77 @@ $(function () {
       // let [{ transactionInfo }] = response
       // let viewableTransaction = JSON.stringify(response.transactionInfo)
       //       let viewableTransaction2 =JSON.stringify(response)
+
+
+
+      // Call to get transaction info (incoming)
+      $.ajax({
+        url: queryUrl2,
+        method: "GET",
+      }).then((res) => {
+        console.log(res)
+
+        res.slice().reverse().forEach(e => { // looping in reverse
+      // res.forEach(e => {                // looping normally
+          console.log(e.accountBalance);
+          console.log(e.recipientAccountBalance);
+        see.push(e);
+        
+        let preBalance = (parseFloat(e.recipientAccountBalance) - parseFloat(e.transactionAmount))
+
+          $("#summaryInfo").append(
+        // $("#summaryInfo").prepend(
+          '<div class="row line">' +
+        '<div class="col-md-2 content-group"><br>' +
+        '<label class="lables" for="transfer date">*Transfer Date</label><br>' +
+        
+        e.transactionDate +
+        
+        "</div>" +
+        '<div class="col-md-3 content-group">' +
+        "<br>" +
+        '<label class="lables" for="recipient info">*Recipient</label><br>' +
+        
+        `Transfer from ${e.senderPhoneNumber}` +
+        
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-3 content-group">' +
+        "<br>" +
+        '<label class="lables" for="Initial Account Balance">*Initial Account Balance</label><br>' +
+        
+        `${new Intl.NumberFormat().format(parseFloat(preBalance).toFixed(2))}` +
+        
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-2 content-group">' +
+        "<br>" +
+        '<label class="lables" for=" Account Balance">*Account Balance</label><br>' +
+        
+          `${new Intl.NumberFormat().format(parseFloat(e.recipientAccountBalance).toFixed(2))}` +
+          
+        "<br>" +
+        "</div>" +
+        '<div class="col-md-2 content-group elegant">' +
+        "<br>" +
+        '<label class="lables" for="Sender Account Number">*Transfer Amount</label><br>' +
+        
+        ` +${ new Intl.NumberFormat().format(parseFloat(e.transactionAmount).toFixed(2))}` +
+        
+        "<br>" +
+        "</div>" +
+        "</div>" +
+        "</div>"
+        )
+
+           });
       
 
-      let see = [];
+
+
+      
+
+      
       response.slice().reverse().forEach(element => { // looping in reverse
       // response.forEach(element => {                // looping normally
         console.log(element.transactionInfo);
@@ -936,7 +1022,7 @@ $(function () {
         "<br>" +
         '<label class="lables" for="Initial Account Balance">*Initial Account Balance</label><br>' +
         
-        `${new Intl.NumberFormat().format(initialBalance)}` +
+        `${new Intl.NumberFormat().format(parseFloat(initialBalance).toFixed(2))}` +
         
         "<br>" +
         "</div>" +
@@ -944,15 +1030,15 @@ $(function () {
         "<br>" +
         '<label class="lables" for=" Account Balance">*Account Balance</label><br>' +
         
-          `${new Intl.NumberFormat().format(element.accountBalance)}` +
+          `${new Intl.NumberFormat().format(parseFloat(element.accountBalance).toFixed(2))}` +
           
         "<br>" +
         "</div>" +
-        '<div class="col-md-2 content-group">' +
+        '<div class="col-md-2 content-group elegant2">' +
         "<br>" +
         '<label class="lables" for="Sender Account Number">*Transfer Amount</label><br>' +
         
-        new Intl.NumberFormat().format(element.transactionAmount) +
+        `-${new Intl.NumberFormat().format(parseFloat(element.transactionAmount).toFixed(2))}` +
         
         "<br>" +
         "</div>" +
@@ -971,6 +1057,11 @@ $(function () {
         // $("#transactInfo").append("<br>" + `${viewableTransaction}`);
         // $("#transactInfo").append("<br>" + viewableTransact);
       // });
+        see.sort((a, b) => a.transactionDate - b.transactionDate);
+        console.log(see);
+        
+        
+        });
     });
   };
 

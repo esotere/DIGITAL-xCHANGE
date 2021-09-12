@@ -8,6 +8,12 @@ const uniqueValidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
+accountType: {
+    type: String,
+    trim: true,
+    unique: false,
+    require: true,
+},
 title: {
     type: String,
     trim: true,

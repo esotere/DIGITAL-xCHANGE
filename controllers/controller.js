@@ -70,16 +70,50 @@ module.exports = app => {
                 
     // Get sum of all users account balance 
     app.get("/api/users/total", (req,res) => {
+        User.aggregate([{
+            $group: {
+                 
+                    _id: "$id",
+                    // accountType: '$accountType',
+                    totalBalance: { $sum: "$accountBalance" },
+                    count: { $sum: 1 }
+                
+            }
+        }]).exec((err, total) => {
+                    if (err) {
+                        res.status(500).send(err);
+
+                        // res.status(500).send({error: `Could Not Get Total Balance`});
+                    } else {
+                        res.status(200).send(total);
+                    }            
+            })
+    // }
+});
+
+
+
+    app.get("/api/users/totalbal", (req,res) => {
         // console.log(req.params);
         // let totalBalance = req.body.totalBalance;
-        let accountBalance = req.body.accountBalance
-        console.log(accountBalance);
+        // let accountBalance = req.body.accountBalance
+        // console.log(accountBalance);
         // if (!accountBalance || accountBalance === "") {
             //     res.status(500).send({error: `Cannot Get Balance!`})
             // } else {
-                User.aggregate([{$sum: accountBalance}], (err, total) => {
+        User.aggregate([{
+            $group: {
+                _id: {
+                    accountType: '$accountType',
+                    totalBalance: { $sum: "$accountBalance" },
+                    count: { $sum: 1 }
+                }
+            }
+        }]).exec((err, total) => {
                     if (err) {
-                        res.status(500).send({error: `Could Not Get Total Balance`});
+                        res.status(500).send(err);
+
+                        // res.status(500).send({error: `Could Not Get Total Balance`});
                     } else {
                         res.status(200).send(total);
                     }            
@@ -96,6 +130,7 @@ module.exports = app => {
     //                 console.log(salt);
     //                 console.log(hashedPassword);
     //                 let user =  new User({
+    //                     accountType: req.body.accountType,
     //                     title: req.body.title,
     //                     userName: req.body.userName,
     //                     firstName: req.body.firstName,
@@ -218,11 +253,13 @@ module.exports = app => {
                         transactionDate: req.body.transactionDate,
                         senderPhoneNumber: req.body.senderPhoneNumber,
                         transactionInfo: req.body.transactionInfo,
+                        transactionInfoOther: req.body.transactionInfoOther,
                         recipientFirstName: req.body.recipientFirstName,
                         recipientLastName: req.body.recipientLastName, 
                         transactionAmount: req.body.transactionAmount,
                         recipientPhoneNumber: req.body.recipientPhoneNumber, 
-                        accountBalance: req.body.accountBalance, 
+                        accountBalance: req.body.accountBalance,
+                        recipientAccountBalance: req.body.recipientAccountBalance,
                         creation_date: req.body.creation_date
                 });
                 console.log(transaction)
@@ -257,12 +294,19 @@ module.exports = app => {
                     return res.status(200).send(transactions);
                 }
             })
+    });
+    
+    // Get one user's incoming transaction by phone number
+    app.get("/api/users/incoming_transactions/:recipientPhoneNumber", (req,res) => {
+            console.log(req.body);
+            Transaction.find({"recipientPhoneNumber": req.params.recipientPhoneNumber}, (err, transactions) => {
+                if (err) {
+                    res.status(500).send({error: `Could Not Get User Transaction Information`});
+                } else {
+                    return res.status(200).send(transactions);
+                }
+            })
         });
-
-
-
-
-
 
 
 

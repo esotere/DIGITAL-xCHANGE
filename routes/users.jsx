@@ -55,6 +55,7 @@ router.post("/api/users", (req, res) => {
 //     res.send(req.body);
 // })
     const {
+        accountType,
         title, 
         userName, 
         firstName, 
@@ -81,7 +82,7 @@ router.post("/api/users", (req, res) => {
     let errors = [];
 
     // Check required fields
-    if (!userName || !firstName || !lastName || !address || !countryCode || !phoneNumber || !email || !password || !confirmPassword) {
+    if (!accountType || !userName || !firstName || !lastName || !address || !countryCode || !phoneNumber || !email || !password || !confirmPassword) {
         errors.push({msg: "Please fill in required fields!"});
     }
     
@@ -99,6 +100,7 @@ router.post("/api/users", (req, res) => {
     if (errors.length > 0) {
         res.render("register", {
             errors,
+            accountType,
             title,
             userName,
             firstName,
@@ -124,6 +126,7 @@ router.post("/api/users", (req, res) => {
                 errors.push({ msg: "Phone Number is already registered" })
                 res.render("register", {
                     errors,
+                    accountType,
                     title,
                     userName,
                     firstName,
@@ -142,6 +145,7 @@ router.post("/api/users", (req, res) => {
                 });
             } else {
                 const newUser = new User({
+                    accountType,
                     title,
                     userName,
                     firstName,
