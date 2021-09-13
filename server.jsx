@@ -104,3 +104,4 @@ routeController(app);
 app.listen(port, () => {
     console.log(`Server started successfully. App listening on ${port}!`);
 });
+

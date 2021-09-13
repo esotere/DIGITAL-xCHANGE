@@ -119,7 +119,36 @@ module.exports = app => {
                     }            
             })
     // }
+    });
+
+
+     // Get sum of all users and merchant account balance 
+    app.get("/api/users/controlbalance", (req,res) => {
+        User.aggregate([{
+              $match: { accountType: "type-1-individual", accountType: "type-2-merchant" } },
+            { $group: {
+                 
+                    _id: "$id",
+                    // accountType: '$accountType',
+                    totalBalance: { $sum: "$accountBalance" },
+                    count: { $sum: 1 }
+                
+            }
+        }]).exec((err, total) => {
+                    if (err) {
+                        res.status(500).send(err);
+
+                        // res.status(500).send({error: `Could Not Get Total Balance`});
+                    } else {
+                        res.status(200).send(total);
+                    }            
+            })
+    // }
 });
+
+    
+
+
 
 
     // ******Adding users through registeration in routes

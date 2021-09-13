@@ -875,7 +875,7 @@ $(function () {
     // // Call to Update Sender Account Balance
     // $.ajax({
     //     url: queryUrl,
-    //     method: "PUT",
+    //     method: "PATCH",
     //     data: data
     // }).then(response => {
     //     console.log(response);
@@ -883,7 +883,7 @@ $(function () {
     // // Call to Update Recipient Account Balance
     // $.ajax({
     //     url: queryUrl2,
-    //     method: "PUT",
+    //     method: "PATCH",
     //     data: newUser2Bal
     // }).then(response => {
     //     console.log(response);

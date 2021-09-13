@@ -3,6 +3,9 @@ GET http://localhost:7779/api/users
 ###
 GET http://localhost:7779/api/users/total
 
+###
+GET http://localhost:7779/api/users/controlbalance
+
 
 ###
 GET http://localhost:7779/api/users/totalbal
