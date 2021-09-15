@@ -10,10 +10,14 @@
     "heroku-postbuild": "npm run build",
     "dev": "node server.jsx"
   },
-  "keywords": [],
+  "keywords": [
+    "USSD",
+    "NODE"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "africastalking": "^0.5.4",
     "bcryptjs": "^2.4.3",
     "bootswatch": "^5.1.0",
     "connect-flash": "^0.1.1",
@@ -24,15 +28,14 @@
     "express-session": "^1.17.2",
     "mongoose": "^5.13.7",
     "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
   },
-  
   "description": ""
 }
-  

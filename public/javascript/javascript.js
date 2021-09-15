@@ -889,6 +889,62 @@ $(function () {
     //     console.log(response);
     // });
   };
+
+
+  let controlBalance = () => {
+    let queryUrl = "/api/users/controlbalance";
+    let queryUrl2 = "/api/user/edit/control/type-3-controller";
+    let balanceHolder = [];
+    
+    // Call to get Total Balance
+    $.ajax({
+      url: queryUrl,
+      method: "GET"
+    }).then(response => {
+      console.log(response);
+      console.log(response[0].totalBalance)
+      balanceHolder.push(response[0].totalBalance)
+      console.log(balanceHolder)
+
+  // Call to Update Control Account Balance with Total Balance
+      // let data = { "accountBalance":  JSON.stringify(response[0].totalBalance)};
+      // let data = { "accountBalance":  response[0].totalBalance};
+      // let data = response[0].totalBalance;
+      // let data = balanceHolder[0];
+      let data = { "accountBalance":  JSON.parse(response[0].totalBalance)};
+    console.log(data);
+    $.ajax({
+        url: queryUrl2,
+        method: "PATCH",
+        // contentType: "application/json", // Throws unexpected token error
+        data: data
+    }).then(response => {
+        console.log(response);
+    });
+
+    });
+
+    // // Call to Update Control Account Balance with Total Balance
+    // // consider moving up into above ajax call
+    // let controlAcctBal = { accountBalance: balanceHolder[0] };
+    // console.log(controlAcctBal);
+    // $.ajax({
+    //     url: queryUrl2,
+    //     method: "PATCH",
+    //     contentType: "application/json",
+    //     data: controlAcctBal
+    // }).then(response => {
+    //     console.log(response);
+    // });
+
+
+  };
+  controlBalance() // used for testing purposes
+
+
+
+
+
   //*********************************************************
   // functions to get data
   //********************************************************* */
@@ -1116,6 +1172,159 @@ $(function () {
         "</div>"
     );
   };
+
+
+  // // USSD payment setup
+
+  function log(message) {
+        $("#response").text(message);
+        $('pre span').each( (i, block) => {
+            hljs.highlightBlock(block);
+        });
+    }
+
+
+  // //   $("#sendSms").click(() => {
+  // //       let to = $("#phone").val();
+  // //       if ( !to) {
+  // //           log(JSON.stringify({ error: "Enter a phone number" }, null, 2));
+  // //           return;
+  // //       }
+
+  // //       log("Sending SMS...");
+
+  // //       $.ajax({
+  // //           method: "POST",
+  // //           url: "/sms/send",
+  // //           data: {
+  // //               to,
+  // //               message: "Im a lumberjack, I sleep all day and I code all night"
+  // //           },
+  // //       })
+  // //       .done(function (msg) {
+  // //           console.log("message : ", msg);
+  // //           log(JSON.stringify(msg, null, 2));
+  // //       })
+  // //       .fail(function (jqXHR, textStatus) {
+  // //           console.log("jqXHR", jqXHR);
+  // //           log(textStatus);
+  // //       });
+
+  // //   });
+
+  // //   $("#airtime").click(function () {
+  // //       const to = $("#phone").val();
+  // //       const inputAmount = $("#amount").val();
+  // //       if (!to) {
+  // //           log(JSON.stringify({ error: "Enter a phone number" }, null, 2));
+  // //           return;
+  // //       }
+
+  // //       if (!inputAmount) {
+  // //           log(JSON.stringify({ error: "Enter an amount (with currency) e,g, KES 334" }, null, 2));
+  // //           return;
+  // //       }
+
+  // //       let currencyCode, amount;
+  // //       [currencyCode, amount] = inputAmount.split(" ");
+
+  // //       log("Sending airtime.....");
+
+  // //       $.ajax({
+  // //           method: "POST",
+  // //           url: "/airtime/send",
+  // //           data: {
+  // //               to,
+  // //               currencyCode,
+  // //               amount
+  // //           }
+  // //       })
+  // //       .done(function (msg) {
+  // //           log(JSON.stringify(msg, null, 2));
+  // //       })
+  // //       .fail(function (jqXHR, textStatus) {
+  // //           log(textStatus);
+  // //       });
+
+  // //   });
+
+  $("#replenish").click(() => {
+      console.log("clicked")
+        const phoneNumber = $("#phone").val();
+        const inputAmount = $("#externalTransferAmt").val();
+        const productName = "TestProduct";
+
+        if (!phoneNumber) {
+            log(JSON.stringify({ error: "Enter a phone number" }, null, 2));
+            return;
+        }
+
+        if (!inputAmount) {
+            log(JSON.stringify({ error: "Enter an amount (with currency) e,g, KES 334" }, null, 2));
+            return;
+        }
+
+        let currencyCode, amount;
+        [currencyCode, amount] = inputAmount.split(" ");
+
+        log("Sending...");
+
+        $.ajax({
+            method: "POST",
+            url: "/payments/mobile-checkout",
+            data: {
+                phoneNumber,
+                currencyCode,
+                amount,
+                productName
+            }
+        })
+        .done(function (msg) {
+            log(JSON.stringify(msg, null, 2));
+        })
+        .fail(function (jqXHR, textStatus) {
+            log(textStatus);
+        });
+
+    });
+
+  //   $("#mobileB2C").click(function () {
+  //       const phoneNumber = $("#phone").val();
+  //       const inputAmount = $("#mobileB2CAmount").val();
+  //       if (!phoneNumber) {
+  //           log(JSON.stringify({ error: "Enter a phone number" }, null, 2));
+  //           return;
+  //       }
+
+  //       if (!inputAmount) {
+  //           log(JSON.stringify({ error: "Enter an amount (with currency) e,g, KES 334" }, null, 2));
+  //           return;
+  //       }
+
+  //       let currencyCode, amount;
+  //       [currencyCode, amount] = inputAmount.split(" ");
+
+  //       log("Sending money...");
+
+  //       $.ajax({
+  //           method: "POST",
+  //           url: "/payments/mobile-b2c",
+  //           data: {
+  //               phoneNumber,
+  //               currencyCode,
+  //               amount
+  //           }
+  //       })
+  //       .done(function (msg) {
+  //           log(JSON.stringify(msg, null, 2));
+  //       })
+  //       .fail(function (jqXHR, textStatus) {
+  //           log(textStatus);
+  //       });
+
+  //   });
+
+
 });
 
 // ******************************************

@@ -10,6 +10,15 @@ GET http://localhost:7779/api/users/controlbalance
 ###
 GET http://localhost:7779/api/users/totalbal
 
+
+###
+PATCH http://localhost:7779/api/user/edit/control/type-3-controller
+Content-Type: application/json
+
+{
+    "accountBalance": 300000007
+}
+
 ###
 POST http://localhost:7777/users/api/users/
 Content-Type: application/json
@@ -33,11 +42,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:7779/api/users/user/edit/4444446666
+PATCH http://localhost:7779/api/users/user/edit/2026745983
 Content-Type: application/json
 
 {
-    "accountBalance": 120000.56
+    "accountBalance": 300000001
 }
 
 ###

@@ -1,0 +1,96 @@
+<div class="container flex-container">
+    <!-- <h1 class="mt-4">Dashboard</h1> -->
+    <p class="lead mb-3"><h1 class="mt-4"> <%= user.firstName%> <%= user.lastName %>!</h1></p><br><br>
+</div>
+<!-- <div class="container flex-container">
+<p class="lead mb-3"><h3 class="mt-4">Initial Account Balance <%#= user.accountBalance %></h3></p>
+</div> -->
+<%- include("./partials/messages") %>
+
+<div class="container flex-container" id="response"><span></span></div>
+
+<div class="container flex-container">
+    <!-- <div class="btn" id="addFunds">
+        <a href="" class="btn btn-primary">Add Funds</a>
+    </div> -->
+    <div class="btn" >
+        <!-- <a id="transactionsSummary" class="btn btn-secondary">Transactions Summary</a>
+        <a id="transactionsFull" onclick="window.location.href='/transactions'" class="btn btn-warning">Transactions</a> -->
+        <!-- <a id="addFunds" href="" class="btn btn-primary">Add Funds</a> -->
+        <button id="backButton" class="button btn btn-sm btn-success"><a href="/dashboard">BACK</a></button>
+    </div>
+</div>
+
+<div class="container logout">
+    <div class="form-group">
+        <!-- <a href="/users/logout" class="btn btn-secondary">Logout</a> -->
+        <button Id="logout" type="submit" class="btn btn-secondary btn-block"
+           onclick="window.location.href='/users/logout'" action="/users/logout" method="GET">logout</button>
+            </div>
+</div>
+
+<div class="container outer-content">
+    <div id="content" class="content">
+        <div id="initial-row" class="row">
+            <div class="col-md-3 content-group">
+                <label for="Transfer Date">*Transfer Date
+                <input id="date" type="date" name="transfer date" value="yyyy-MM-dd" min="2019-03-26"
+                    placeholder="" required>
+                    <span class="validity"></span>
+                </label><br>
+            </div>
+
+            <!-- <div class="col-md-3 content-group">
+                <label for="Transfer Date">*Transfer Date</label><br>
+                <input id="date" type="date" name="transfer date" value="yyyy-MM-dd" min="2019-03-26"
+                    placeholder="" required>
+            </div> -->
+            <div id="phoneOne" class="col-md-2 content-group">
+                <!-- <h5 class="sphone-1"><strong>Sender Phone Number: </strong><span id="sphone-1"></span></h5> -->
+                <label for="Sender Phone Number">*Sender Phone Number</label><br>
+                <input id="phone-1" type="text" class="inputBox" placeholder="" name="Sender Phone Number" value= <%= user.phoneNumber %> required="required" readonly/>
+            </div>
+            <div class="col-md-4 content-group">
+                <label for="Recipient Bank Account Number">*Recipient Bank Account Number</label><br>
+                <input id="externalBankAccountNumber" type="text" class="inputBox" placeholder="" name="Recipient Bank Account Number" required="required"/>
+            </div>
+            <div class="col-md-3 content-group">
+                <label for="External Transfer Amount">*Transfer Amount</label><br>
+                <input type="number" step="any" class="inputBox" id="externalTransferAmt" placeholder="₦"
+                    name="External Transfer Amount" required="required"/>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="glyph">
+        <a href="" class="glyphicon glyphicon-plus" aria-hidden="true"> Add Recipient</a>
+    </div> -->
+    <div class=" submit submit-btn-wrapper">
+        <button id="replenish" class="button btn btn-sm btn-success transfer">SEND PAYMENT</button>
+        <button id="cancel" class="button btn btn-sm btn-danger cancel" type="reset" value="reset">CANCEL</button>
+    </div>
+
+
+</div>
+<!-- <div class="container ">
+    <div class="row content info">
+        <div id="transactInfoHead" class="col-md-12"><b>Transaction Summary</b></div>        
+    </div>
+
+    <div id="summaryInfo" class="row content info">
+        <div id="transactDate" class="col-md-2"><b>Transaction Date</b></div>
+        <div id="transactInfo" class="col-md-3"><b>Transaction Info</b></div>
+        <div id="initialAcctBal" class="col-md-3"><b>Initial Balance</b></div>
+        <div id="newAcctBal" class="col-md-2"><b>Post Transaction Balance</b></div>
+        <div id="transactAmt" class="col-md-2"><b>Transaction Amount</b></div>
+        
+    </div>
+    
+</div>
+<div class="container ">
+    <div id="transaction_summary" class="row content info2">
+        <div id="transactionDate" class="col-md-3"><b>Transaction Date</b></div>
+        <div id="transactionInfo" class="col-md-6"><b>Transaction Info</b></div>
+        <div id="transactionAmt" class="col-md-3"><b>Transaction Amount</b></div>
+
+    </div>
+</div> -->

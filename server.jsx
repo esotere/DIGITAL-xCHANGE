@@ -7,7 +7,9 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const routesIndex = require("./routes/index.jsx");
 const routesUsers = require("./routes/users.jsx");
+const routesPayments = require("./routes/payments.jsx");
 const path = require("path");
+const logger = require("morgan")
 
 const app = express();
 
@@ -45,7 +47,6 @@ mongoose.connect("mongodb://localhost/coinzUsers" || process.env.MONGODB_URI, { 
 
 
 
-
 // EJS set view engine as ejs
 app.use(expressLayouts);     // +==> must be above app.set or won't work
 app.set("view engine", "ejs");
@@ -67,7 +68,9 @@ app.use(express.raw({type:"application/x-www-form-urlencoded"}));
 
 app.use(express.text({ type:"text/html"}));
 
-app.use(express.json({type: "application/*+json"}));
+app.use(express.json({ type: "application/*+json" }));
+
+app.use(logger("dev"));
 
 // Express session middleware
 app.use(session({
@@ -91,12 +94,18 @@ app.use((req, res, next) => {
     res.locals.date_error = req.flash("date_error");
     next();
 });
+ 
+
+
+
 
 // Routes 
 app.use("/", routesIndex);
 app.use("/users", routesUsers);
+app.use("/replenish", routesPayments);
 // app.use("/transactions", routesUsers);
 routeController(app);
+
 
 
 
@@ -104,4 +113,3 @@ routeController(app);
 app.listen(port, () => {
     console.log(`Server started successfully. App listening on ${port}!`);
 });
-
