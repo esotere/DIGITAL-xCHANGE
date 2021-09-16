@@ -55,6 +55,9 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+.replenish {
+    justify-content: space-around;
+}
 .initial-row {
     margin: 10px;
     padding: 5px;

@@ -44,30 +44,52 @@ router.post("/replenish", (req, res) => {
 });
 
 router.post("/mobile-b2c", (req, res) => {
-    const productName = "TestProduct";
+    const productName = "Coinz";
     const {
-        phoneNumber,
-        currencyCode,
-        amount
+        // productName,
+        bankAccount, 
+        currencyCode, 
+        amount, 
+        narration, 
+        metadata,
+        
+        // phoneNumber,
+        // currencyCode,
+        // amount
     } = req.body;
 
-    let firstRecipient = {
-        phoneNumber,
-        currencyCode,
-        amount: Number(amount),
+    let recipient = {
+        productName,
+        bankAccount, 
+        currencyCode, 
+        amount: Number(amount), 
+        narration, 
         metadata: { "foo": "bar" },
-        reason: payments.REASON.SALARY
+        
+        // phoneNumber,
+        // currencyCode,
+        // amount: Number(amount),
+        // metadata: { "foo": "bar" },
+        // reason: payments.REASON.SALARY
     }
 
     let options = {
         productName,
-        recipients: [
-            firstRecipient,
-            // more recipients
-        ]
+        bankAccount, 
+        currencyCode, 
+        amount: Number(amount),
+        // recipient,
+        narration, 
+        metadata: { "foo": "bar" }
+
+        // productName,
+        // recipients: [
+        //     firstRecipient,
+        //     // more recipients
+        // ]
     }
 
-    payments.mobileB2C(options)
+    payments.bankCheckoutCharge(options)
         .then(response => {
             console.log(response);
             res.json(response);

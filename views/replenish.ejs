@@ -31,14 +31,14 @@
 
 <div class="container outer-content">
     <div id="content" class="content">
-        <div id="initial-row" class="row">
-            <div class="col-md-3 content-group">
+        <div id="initial-row" class="row replenish">
+            <!-- <div class="col-md-3 content-group">
                 <label for="Transfer Date">*Transfer Date
                 <input id="date" type="date" name="transfer date" value="yyyy-MM-dd" min="2019-03-26"
                     placeholder="" required>
                     <span class="validity"></span>
                 </label><br>
-            </div>
+            </div> -->
 
             <!-- <div class="col-md-3 content-group">
                 <label for="Transfer Date">*Transfer Date</label><br>
@@ -50,15 +50,25 @@
                 <label for="Sender Phone Number">*Sender Phone Number</label><br>
                 <input id="phone-1" type="text" class="inputBox" placeholder="" name="Sender Phone Number" value= <%= user.phoneNumber %> required="required" readonly/>
             </div>
-            <div class="col-md-4 content-group">
+            <div class="col-md-3 content-group">
+                <label for="bank name ">*Bank Name</label><br>
+                <input type="text" step="any" class="inputBox" id="bankName" placeholder="BridgeWay"
+                    name="bank name " required="required"/>
+            </div>
+            <div class="col-md-5 content-group">
                 <label for="Recipient Bank Account Number">*Recipient Bank Account Number</label><br>
                 <input id="externalBankAccountNumber" type="text" class="inputBox" placeholder="" name="Recipient Bank Account Number" required="required"/>
             </div>
-            <div class="col-md-3 content-group">
-                <label for="External Transfer Amount">*Transfer Amount</label><br>
+            <div class="col-md-2 content-group">
+                <label for="External Transfer Amount">*Amount</label><br>
                 <input type="number" step="any" class="inputBox" id="externalTransferAmt" placeholder="₦"
                     name="External Transfer Amount" required="required"/>
             </div>
+            <!-- <div class="col-md-3 content-group">
+                <label for="recipient bank account ">*Recipient Bank Account</label><br>
+                <input type="number" step="any" class="inputBox" id="recipientBankAccount" placeholder="₦"
+                    name="recipient bank account " required="required"/>
+            </div> -->
         </div>
     </div>
     <!-- <div class="glyph">

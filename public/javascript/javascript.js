@@ -1252,7 +1252,10 @@ $(function () {
       console.log("clicked")
         const phoneNumber = $("#phone").val();
         const inputAmount = $("#externalTransferAmt").val();
-        const productName = "TestProduct";
+        const productName = "Coinz";
+        const accountToCharge = $("#externalBankAccountNumber").val();
+        const recipientBankAccount = $("#recipientBankAccount").val();
+        // let currencyCode;
 
         if (!phoneNumber) {
             log(JSON.stringify({ error: "Enter a phone number" }, null, 2));
@@ -1261,6 +1264,11 @@ $(function () {
 
         if (!inputAmount) {
             log(JSON.stringify({ error: "Enter an amount (with currency) e,g, KES 334" }, null, 2));
+            return;
+        }
+    
+        if (!accountToCharge) {
+            log(JSON.stringify({ error: "Enter a bank account number" }, null, 2));
             return;
         }
 
@@ -1276,7 +1284,8 @@ $(function () {
                 phoneNumber,
                 currencyCode,
                 amount,
-                productName
+                productName,
+                accountToCharge
             }
         })
         .done(function (msg) {
