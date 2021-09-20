@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt =require("bcryptjs")
 const passport = require("passport");
+// const multer = require("multer");
+// const upload = multer({dest: "/public/uploads/"});
 
 require("../config/passportConfig.js")
 
@@ -50,27 +52,29 @@ router.get("/register", forwardAuthenticated, (req, res) => {
 
 
 // Register Handle
+// router.post("/api/users", upload.single("profileImage"), (req, res) => {
 router.post("/api/users", (req, res) => {
+    console.log(req.file)
     // console.log(req.body);
-//     res.send(req.body);
-// })
+    //     res.send(req.body);
+    // })
     const {
         accountType,
-        title, 
-        userName, 
-        firstName, 
-        lastName, 
-        address, 
-        countryCode, 
-        phoneNumber, 
-        email, 
-        bank_name, 
-        bank_account_number, 
-        bvn, 
-        system_account_number, 
-        accountBalance, 
-        password, 
-        confirmPassword 
+        title,
+        userName,
+        firstName,
+        lastName,
+        address,
+        countryCode,
+        phoneNumber,
+        email,
+        bank_name,
+        bank_account_number,
+        bvn,
+        system_account_number,
+        accountBalance,
+        password,
+        confirmPassword
     } = req.body;
 
     console.log(req.body);
@@ -78,7 +82,11 @@ router.post("/api/users", (req, res) => {
     let signUpBalance = 0.00;
     console.log(signUpBalance)
     req.body.accountBalance = JSON.stringify(signUpBalance);
-    console.log({ab:req.body.accountBalance, balance: signUpBalance})
+    console.log({ ab: req.body.accountBalance, balance: signUpBalance });
+
+    // let full_system_account_number = req.body.countryCode + req.body.phoneNumber + "00" + User.length + 1
+    // console.log(full_system_account_number);
+    // req.body.system_account_number = JSON.parse(full_system_account_number);
     let errors = [];
 
     // Check required fields
@@ -93,9 +101,9 @@ router.post("/api/users", (req, res) => {
 
     // Check password length. Validation in HTML
     // Throws error "Typeerror cannot read property 'length' of undefined"
-    // if (password.length < 6) {
-    //     errors.push({msg: "Password must be at least 6 characters long!"});
-    // }
+    if (password.length < 6) {
+        errors.push({msg: "Password must be at least 6 characters long!"});
+    }
 
     if (errors.length > 0) {
         res.render("register", {
@@ -117,13 +125,41 @@ router.post("/api/users", (req, res) => {
             password,
             confirmPassword
         })
+    }  else if (accountType == "type-3-controller") {
+        // Validation passed
+      User.findOne({ accountType: accountType })
+        .then(user => {
+            if (user) {
+                // User exists
+                errors.push({ msg: "Controller already assigned." })
+                res.render("register", {
+                    errors,
+                    accountType,
+                    title,
+                    userName,
+                    firstName,
+                    lastName,
+                    address,
+                    countryCode,
+                    phoneNumber,
+                    email,
+                    bank_name,
+                    bank_account_number,
+                    bvn,
+                    system_account_number,
+                    accountBalance,
+                    password,
+                    confirmPassword
+                });
+                    }
+                })
     } else {
         // Validation passed
       User.findOne({ phoneNumber: phoneNumber })
         .then(user => {
             if (user) {
                 // User exists
-                errors.push({ msg: "Phone Number is already registered" })
+                errors.push({ msg: "Phone Number is already registered." })
                 res.render("register", {
                     errors,
                     accountType,
@@ -219,7 +255,7 @@ router.post("/login", (req, res, next) => {
 // Logout Handle
 router.get("/logout", (req, res) => {
     req.logOut();
-    req.flash("success_msg", "You are logged out")
+    req.flash("success_msg", "You are successfully logged out.")
     res.redirect("/users/login");
     });
 

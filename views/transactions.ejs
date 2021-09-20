@@ -1,4 +1,12 @@
 <%- include("./partials/messages") %>
+
+<div id="phoneOne" class="col-md-2 content-group">
+                <!-- <h5 class="sphone-1"><strong>Sender Phone Number: </strong><span id="sphone-1"></span></h5> -->
+                <label for="Sender Phone Number">*Sender Phone Number</label><br>
+                <input id="phone-1" type="text" class="inputBox" placeholder="" name="Sender Phone Number" value= <%= user.phoneNumber %> required="required" readonly/>
+            </div>
+
+
 <div class="container outer-content">
     <div id="content" class="content">
         <div id="initial-row" class="row">
@@ -15,6 +23,7 @@
         <button id="displayTransact" class="button btn btn-sm btn-danger">Something Else</button>
     </div>
 
+    <%- include("./partials/logout")%>
 
 </div>
 <div class="container ">

@@ -1,22 +1,44 @@
+<%- include("./partials/messages") %>
 <div class="container">
-    <div class="profileContainer">
-        <div class="profileTop">
-            <img src="when you add assets" />
-            <p class="lead mb-3"><h1 class="mt-4">Hey <%= user.userName %></h1></p><br><br>
+    <div class=" submit submit-btn-wrapper">
+        <button id="" class="button btn btn-sm btn-success shadow"><a href="/dashboard">Back</a></button>
+    </div>
+    
+    <%- include("./partials/logout")%>
 
+    <div id="phoneOne" class="col-md-2 content-group">
+                <!-- <h5 class="sphone-1"><strong>Sender Phone Number: </strong><span id="sphone-1"></span></h5> -->
+                <label for="Sender Phone Number">*Sender Phone Number</label><br>
+                <input id="phone-1" type="text" class="inputBox" placeholder="" name="Sender Phone Number" value= <%= user.phoneNumber %> required="required" readonly/>
+            </div>
+    
+    <div>
+        <p class="lead mb-3"><h1 class="mt-4">Hey <%= user.userName %></h1></p><br><br>
+    </div>
+
+        <div class="profileContainer">
+            <div class="profileTop">
+                <img class="shadow" src="when you add assets" />
+                
+            </div>
         </div>
+        
 
-        <div class="profileMain">
+
+
+     <div class="profileContainer"></div>
+
+        <div class="profileMain shadow">
 
             <ul>
-                <li><p class="lead mb-3"><h3 class="mt-4">First Name: <%= user.firstName %></h3> </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Last Name: <%= user.lastName %></h3> </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Address: <%= user.address %></h3>  </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Country: <%= user.countryCode %></h3>  </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Phone Number: <%= user.phoneNumber %></h3>  </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Email: <%= user.email %></h3>  </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Bank Name: <%= user.bank_name %></h3>  </p></li>
-                <li><p class="lead mb-3"><h3 class="mt-4">Bank Account Number: <%= user.bank_account_number %></h3>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">First Name: <%= user.firstName %></h5> </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Last Name: <%= user.lastName %></h5> </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Address: <%= user.address %></h5>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Country Code: <%= user.countryCode %></h5>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Phone Number: <%= user.phoneNumber %></h5>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Email: <%= user.email %></h5>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Bank Name: <%= user.bank_name %></h5>  </p></li>
+                <li><p class="lead mb-3"><h5 class="mt-4">Bank Account Number: <%= user.bank_account_number %></h5>  </p></li>
             </ul>
 
 
@@ -34,9 +56,9 @@
                 <li><p>Bank Account Number </p></li>
             </ol> -->
 
-            <p><h4>Reset Password</h4></p>
-            <p><h4>Change Something</h4></p>
         </div>
+        <p><h4>Reset Password</h4></p>
+        <p><h4>Change Something</h4></p>
     </div>
 
 

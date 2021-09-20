@@ -12,7 +12,7 @@ module.exports = (passport) => {
         User.findOne({ phoneNumber: phoneNumber})
             .then(user => {
                 if (!user) {
-                    return done(null, false, {message: "That phone number is not registered"})
+                    return done(null, false, {message: "That phone number is not registered."})
                 }
                 // match password
                 bcrypt.compare(password, user.password, (err, isMatch) => {

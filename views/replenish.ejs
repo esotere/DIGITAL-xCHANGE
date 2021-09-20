@@ -29,6 +29,32 @@
             </div>
 </div>
 
+<div class="container">
+    <div class="form-group">
+        <div id="phoneOne" class="col-md-2 content-group">
+                <!-- <h5 class="sphone-1"><strong>Sender Phone Number: </strong><span id="sphone-1"></span></h5> -->
+                <label for="Sender Phone Number">*Sender Phone Number</label><br>
+                <input id="phone-1" type="text" class="inputBox" placeholder="" name="Sender Phone Number" value= <%= user.phoneNumber %> required="required" readonly/>
+            </div>
+            <div class="col-md-3 content-group">
+                <label for="sender bank name ">*Sender Bank Name</label><br>
+                <input type="text" step="any" class="inputBox" id="senderBankName" placeholder="BridgeWay"
+                    name="sender bank name " required="required"/>
+            </div>
+            <div class="col-md-5 content-group">
+                <label for="Sender Bank Account Number">*Sender Bank Account Number</label><br>
+                <input id="senderExternalBankAccountNumber" type="text" class="inputBox" placeholder="" name="Sender Bank Account Number" required="required"/>
+            </div>
+            <!-- <div class="col-md-2 content-group">
+                <label for="External Transfer Amount">*Amount</label><br>
+                <input type="number" step="any" class="inputBox" id="externalTransferAmt" placeholder="₦"
+                    name="External Transfer Amount" required="required"/>
+            </div> -->
+
+    </div>
+
+</div>
+
 <div class="container outer-content">
     <div id="content" class="content">
         <div id="initial-row" class="row replenish">

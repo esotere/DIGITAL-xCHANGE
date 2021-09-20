@@ -11,5 +11,25 @@ module.exports = {
         return next();
         }
         res.redirect('/dashboard');      
-  }
+    },
+    //  Added all below trying to resolve an issue
+    forwardAuthenticated: function (req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/replenish');
+    },
+    forwardAuthenticated: function (req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/transactions');
+    },
+    forwardAuthenticated: function (req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/profile');
+    }
+
 };

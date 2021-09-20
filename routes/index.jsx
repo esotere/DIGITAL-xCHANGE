@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+// const multer = require("multer");
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth.jsx");
 require("../controllers/controller.js")
 
@@ -16,6 +17,7 @@ router.get("/profile", ensureAuthenticated, (req, res) => {
 // Transactions Page
 router.get("/transactions", ensureAuthenticated, (req, res) => {
     res.render("transactions", {
+        user: req.user,
         // transaction: req.transaction,
         // transactionInfo: req.transaction.transactionInfo,
          transactionInfo: req.transaction !== undefined ? req.transaction.transactionInfo : ""
@@ -30,51 +32,43 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
         name: req.user.firstName
     });
 });
-
-// Payment/USSD 
+// External transfer/payment
 router.get("/replenish", ensureAuthenticated, (req, res) => {
     res.render("replenish", {
         user: req.user
-
+        
     });
 });
 
-// //  Routes for USSD
+// Payment/USSD 
 // router.post("/replenish", ensureAuthenticated, (req, res) => {
-//     let { sessionId, serviceCode, phoneNumber, test } = req.body;
-//     if (text === '') {
-//         // This is the first request. Note how we start the response with CON
-//         let response = `CON What would you want to check
-//     1. My Account
-//     2. My phone number
-//     3. Make Payment`
-//         res.send(response)
-//     } else if (text === '1') {
-//         // Business logic for first level response
-//         let response = `CON Choose account information you want to view
-//     1. Account number
-//     2. Account balance`
-//         res.send(response)
-//     } else if (text === '2') {
-//         // Business logic for first level response
-//         let response = `END Your phone number is ${phoneNumber}`
-//         res.send(response)
-//     } else if (text === '1*1') {
-//         // Business logic for first level response
-//         let accountNumber = 'ACC1001'
-//         // This is a terminal request. Note how we start the response with END
-//         let response = `END Your account number is ${accountNumber}`
-//         res.send(response)
-//     } else if (text === '1*2') {
-//         // This is a second level response where the user selected 1 in the first instance
-//         let balance = 'NGN 10,000'
-//         // This is a terminal request. Note how we start the response with END
-//         let response = `END Your balance is ${balance}`
-//         res.send(response)
-//     } else {
-//         res.status(400).send('Bad request!')
-//     }
+//            user: req.user
+
+//   let {productName, bankAccount, currencyCode, amount, narration, metadata} = req.body
+//   if (text == '') {
+//     // This is the first request. Note how we start the response with CON
+//     let response = `CON What would you like to do?
+//     1. Transfer Fund
+//     2. Make Payment
+//     3. Refill Coinz`
+//     res.send(response)
+//   } else if (text == "1" || text == "2") {
+//     // Business logic for first level response
+//     let currencyCode;
+//     let response = `CON Enter account number and amount`
+//     res.send(response)
+//   } else if (text == "3") {
+//     // Business logic for first level response
+//     let currencyCode;
+//     let productName = "Coinz"
+//     let response = `CON Enter ${productName}, account number and amount`
+//     res.send(response)
+//   }  else {
+//     res.status(400).send('Bad request!')
+//   }
+
 // });
+
 
 module.exports = router;
 

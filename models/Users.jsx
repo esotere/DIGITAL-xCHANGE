@@ -83,6 +83,11 @@ accountBalance: {
     trim: true,
     unique: false,
 },
+// img: {
+//     data: Buffer,
+//     contentType: String
+    
+// },
 password: {
     type: String,
     require: true,

@@ -293,6 +293,11 @@
             <input type="number" id="accountBalance" name="accountBalance" value=0.00 class="form-control" placeholder="0.00" disabled="disabled">
             <input type="hidden" id="accountBalance" name="accountBalance" value=0.00 class="form-control" placeholder="0.00" >
         </div>
+        <!-- <div>
+            <label for="imageFile">Add Profile Picture</label>
+            <input type="file" id="imageFile" name="imagefile">
+            <input type="submit">
+        </div> -->
         <div class="form-group">
             <label for="password">*Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="*Password" required="required" pattern=".{6,}" title="6 characters minimum" value="<%= typeof password !== 'undefined' ? password : '' %>" />
@@ -306,7 +311,7 @@
                 onclick="">Sign Up</button>
         </div>
         <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label><br>
             <a href="/users/register" class="pull-right">Forgot Password?</a>
         </div>
     </form>

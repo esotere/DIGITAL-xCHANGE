@@ -26,11 +26,6 @@
   box-shadow: 0 2px #666;
   transform: translateY(4px);
 }
-.logout {
-    margin: 15px
-}
-
-
 
 .bal {
     text-align: center;
@@ -45,8 +40,16 @@
 /* .outer-content {
     display: flex;
 } */
+#profileIcon {
+    width: auto;
+    margin-left: 650px;
+    justify-content: flex-end;
+}
+.logout {
+    margin: 15px
+}
 .stuff {
-    display: inline-flex;
+    display: right;
 }
 .content {
     margin: 10px;
@@ -54,6 +57,10 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+#refTop {
+    text-align: center;
 }
 .replenish {
     justify-content: space-around;
@@ -79,9 +86,15 @@
     justify-content: space-around;
     
 }
-/* .space {
-    
-} */
+.pass {
+    background-color: rgb(170, 245, 170);
+}
+.warn {
+    background-color: rgb(248, 248, 176);
+}
+.doom {
+    background-color: rgb(248, 158, 158)(248, 172, 172);
+}
 .submit {
     margin: 10px;
     padding: 5px;
@@ -125,17 +138,15 @@ input.inputBox {
     width: 12%;
     height: 4%;
 }
-
 .container.flex-container {
     display: flex;
-    align-items: center;
-}
-#addFunds {
-    justify-content: center;
     margin: auto;
-
+    /* align-items: center; */
 }
-
+#dashBtnGroup {
+    justify-content: flex-end;
+    margin: auto;
+}
 #phoneOne {
     display: none;
 }
@@ -149,10 +160,40 @@ input.inputBox {
 #initialRow {
     display: block;
 }
+.profileContainer {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    font-size: small;
+    margin-bottom: 10px;
+}
+.profileTop {
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.profileMain {
+    text-align: center;
+    margin: auto;
+    padding: 20px 10px;
+    background-color: rgb(240, 236, 236);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: smaller;
+    border-radius: 5%;
+    width: 60%;    
+}
+
 img {
-  width:100px;
-  height:100px;
+  width:200px;
+  height:200px;
   background: url(http://goo.gl/vyAs27) no-repeat scroll 0 0;
+  border-radius: 15%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 div.row.content.info {
@@ -186,4 +227,8 @@ div#transactInfoHead {
 
 .elegant2 {
     color: red
+}
+
+.shadow {
+    box-shadow: 2.0px 4.0px 4.0px hsl(0deg, 0% 0% / 0.44);
 }

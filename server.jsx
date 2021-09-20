@@ -9,7 +9,8 @@ const routesIndex = require("./routes/index.jsx");
 const routesUsers = require("./routes/users.jsx");
 const routesPayments = require("./routes/payments.jsx");
 const path = require("path");
-const logger = require("morgan")
+const logger = require("morgan");
+// const multer = require("multer");
 
 const app = express();
 
@@ -94,6 +95,19 @@ app.use((req, res, next) => {
     res.locals.date_error = req.flash("date_error");
     next();
 });
+
+
+
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
+ 
+// var upload = multer({ storage: storage });
  
 
 
@@ -103,9 +117,14 @@ app.use((req, res, next) => {
 app.use("/", routesIndex);
 app.use("/users", routesUsers);
 app.use("/replenish", routesPayments);
-// app.use("/transactions", routesUsers);
+// app.use("/transactions", routesIndex);
 routeController(app);
 
+
+
+
+// // Set Port
+// app.set("port", (process.env.PORT || 7779));
 
 
 

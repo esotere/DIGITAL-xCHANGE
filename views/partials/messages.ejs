@@ -1,49 +1,61 @@
-<% if (typeof errors !== "undefined") { %>
-    <% errors.forEach((error) => { %>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <%= error.msg %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+ <% if (typeof errors !== "undefined") { %>
+        <% errors.forEach((error) => { %>
+            <div class="alert-warning warn alert-dismissible fade show">
+                 <%= error.msg %>
+             </div>
+            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert"> -->
+                <%#= error.msg %>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> -->
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                <!-- </button> -->
+            <!-- </div> -->
   <% }); %>
-<% } %> 
+  <% } %> 
+  
+  <% if (success_msg !== "") { %>
+    <div class="alert-success pass alert-dismissible fade show">
+         <%= success_msg %>
+     </div>
+    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+        <%#= success_msg %>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> -->
+            <!-- <span aria-hidden="true">&times;</span> -->
+        <!-- </button> -->
+    <!-- </div> -->
+    <% } %>
 
-<% if (success_msg !== "") { %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%= success_msg %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-<% } %>
-
-<% if (error_msg !== "") { %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error_msg %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-<% } %>
-
-<% if (error !== "") { %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-<% } %>
-
-<% if (date_error !== "") { %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <%= date_error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-<% } %>
-
-
-
+    <% if (error_msg !== "") { %>
+        <div class="alert-danger doom alert-dismissible fade show">
+             <%= error_msg %>
+         </div>
+        <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert"> -->
+            <%#= error_msg %>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> -->
+            <!-- <span aria-hidden="true">&times;</span> -->
+        <!-- </button> -->
+    <!-- </div> -->
+    <% } %>
+    
+    <% if (error !== "") { %>
+        <div class="alert-danger doom alert-dismissible fade show">
+             <%= error %>
+         </div>
+        <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert"> -->
+        <%#= error %>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> -->
+            <!-- <span aria-hidden="true">&times;</span> -->
+        <!-- </button> -->
+    <!-- </div> -->
+    <% } %>
+    
+    <% if (date_error !== "") { %>
+        <div class="alert-warning warn alert-dismissible fade show">
+             <%= date_error %>
+         </div> 
+        <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert"> -->
+            <%#= date_error %>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> -->
+                <!-- <span aria-hidden="true">&times;</span> -->
+            <!-- </button> -->
+        <!-- </div> -->
+        <% } %>

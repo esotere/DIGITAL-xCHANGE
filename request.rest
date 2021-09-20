@@ -1,6 +1,9 @@
 GET http://localhost:7779/api/users
 
 ###
+GET http://localhost:7779/api/users/user/8035412222
+
+###
 GET http://localhost:7779/api/users/total
 
 ###
